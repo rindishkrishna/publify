@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 gem "rails", ["~> 6.1.6", ">= 6.1.6.1"]
-
+gem "pg_activerecord_ext", git: "https://github.com/gautampunhani/pg_activerecord_ext", branch: "main"
 gem "mysql2"
 gem "pg"
 gem "sqlite3", "~> 1.4.0"

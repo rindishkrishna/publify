@@ -42,7 +42,7 @@ jobs:
           bundler-cache: true
           rubygems: latest
       - name: Database Configuration
-        run: cp config/database.yml.postgresql config/database.yml
+        run: cp config/database.yml config/database.yml
       - name: Migrate database
         run: bundle exec rake db:create db:migrate
       - name: Run tests
