@@ -65,7 +65,7 @@ class Blog < ApplicationRecord
   setting :global_pings_disable, :boolean, false
   setting :send_outbound_pings, :boolean, true
   setting :email_from, :string, "publify@example.com"
-  setting :allow_signup, :integer, 0
+  setting :allow_signup, :integer, 1
   setting :date_format, :string, "%d/%m/%Y"
   setting :time_format, :string, "%Hh%M"
   setting :image_avatar_size, :integer, 48
