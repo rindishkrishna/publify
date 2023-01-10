@@ -80,6 +80,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "dashboard#index", as: "dashboard"
+    get "index_in_pipeline", to: "dashboard#index_in_pipeline"
 
     resources :articles, only: [:index, :new, :edit, :create, :update, :destroy],
                          format: false do

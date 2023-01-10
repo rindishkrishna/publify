@@ -3,7 +3,10 @@
 source "https://rubygems.org"
 
 gem "rails", ["~> 6.1.6", ">= 6.1.6.1"]
-gem "pg_activerecord_ext", git: "https://github.com/gautampunhani/pg_activerecord_ext", branch: "main"
+gem "pg_activerecord_ext", git: "https://github.com/MohanThanigaivelan/pg_activerecord_ext.git", branch: "main"
+gem 'toxiproxy', '~> 2.0', '>= 2.0.2'
+gem 'rails-perftest'
+gem 'ruby-prof', "~> 1.4"
 gem "mysql2"
 gem "pg"
 gem "sqlite3", "~> 1.4.0"
@@ -64,6 +67,7 @@ group :development do
   # request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem "rack-mini-profiler", "~> 3.0"
+  gem 'rails-perftest'
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
   gem "spring", "~> 3.0.0"
@@ -89,3 +93,5 @@ end
 Dir.glob(File.join(File.dirname(__FILE__), "themes", "**", "Gemfile")) do |gemfile|
   eval(File.read(gemfile), binding)
 end
+
+gem "ruby-prof", "~> 1.4"
