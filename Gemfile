@@ -5,7 +5,6 @@ source "https://rubygems.org"
 gem "rails", ["~> 6.1.6", ">= 6.1.6.1"]
 gem "pg_activerecord_ext", git: "https://github.com/MohanThanigaivelan/pg_activerecord_ext.git", branch: "main"
 gem 'toxiproxy', '~> 2.0', '>= 2.0.2'
-gem 'rails-perftest'
 gem 'ruby-prof', "~> 1.4"
 gem "mysql2"
 gem "pg"

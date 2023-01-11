@@ -25,7 +25,7 @@ class Admin::DashboardController < Admin::BaseController
     @confirmed = Comment.ham.where("created_at > ?", today).count
     @unconfirmed = Comment.unconfirmed.where("created_at > ?", today).count
 
-    @comments = Comment.last_published.load_in_pipeline
+    @comments = Comment.last_published
     @drafts = Article.drafts.where(user_id: current_user.id).limit(5)
 
     @statspam = Comment.spam.count
@@ -51,8 +51,8 @@ class Admin::DashboardController < Admin::BaseController
     @confirmed = Comment.ham.where("created_at > ?", today).count
     @unconfirmed = Comment.unconfirmed.where("created_at > ?", today).count
 
-    @comments = Comment.last_published
-    @drafts = Article.drafts.where(user_id: current_user.id).limit(5)
+    @comments = Comment.last_published.load_in_pipeline
+    @drafts = Article.drafts.where(user_id: current_user.id).limit(5).load_in_pipeline
 
     @statspam = Comment.spam.count
   end
