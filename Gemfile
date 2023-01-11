@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 gem "rails", ["~> 6.1.6", ">= 6.1.6.1"]
-gem "pg_activerecord_ext", git: "https://github.com/MohanThanigaivelan/pg_activerecord_ext.git", branch: "main"
+gem "pg_activerecord_ext", git: "https://github.com/gautampunhani/pg_activerecord_ext.git", branch: "main"
 gem 'toxiproxy', '~> 2.0', '>= 2.0.2'
 gem 'ruby-prof', "~> 1.4"
 gem "mysql2"
@@ -54,6 +54,7 @@ group :development, :test do
   gem "rubocop-rails", "~> 2.15.2", require: false
   gem "rubocop-rspec", "~> 2.12.1", require: false
   gem "simplecov", "~> 0.21.2", require: false
+  gem "descriptive_statistics", require: false
 end
 
 group :development do

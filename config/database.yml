@@ -1,0 +1,34 @@
+login: &login
+  adapter: postgres_pipeline
+  host: localhost
+  port: 22220
+  username: postgres
+  password: postgres
+connection: &connection
+  encoding: unicode
+  pool: 5
+
+
+development:
+  database: publify_dev
+  <<: *login
+  <<: *connection
+
+test:
+  database: publify_test
+  <<: *login
+  <<: *connection
+
+test_non_pipeline:
+  database: publify_test
+  adapter: postgresql
+  host: localhost
+  port: 22220
+  username: postgres
+  password: postgres
+  <<: *connection
+
+production:
+  database: publify
+  <<: *login
+  <<: *connection
