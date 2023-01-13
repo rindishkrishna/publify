@@ -6,6 +6,10 @@ RSpec.describe Admin::DashboardController, type: :controller do
     before do
       @henri = create(:user, :as_admin)
       sign_in @henri
+      get :index
+      get :index_in_pipeline
+      get :index_on_steroids
+      get :index_on_steroids_in_pipeline
     end
     def get_benchmark_results
       index_pipeline_benchmarks = []
@@ -67,6 +71,7 @@ RSpec.describe Admin::DashboardController, type: :controller do
 
       puts "95% : In Pipeline but without load : #{benchmark_results[0].percentile(95)} ; In pipeline with load : #{benchmark_results[1].percentile(95)}, Not in pipeline #{benchmark_results[2].percentile(95)}"
       puts "In Pipeline but without load : #{index_pipeline_benchmarks_average} ; In pipeline with load : #{index_with_load_in_pipeline_benchmarks_average}, Not in pipeline #{index_non_pipeline_benchmarks_average}"
+      expect(index_with_load_in_pipeline_benchmarks_average).to be < index_non_pipeline_benchmarks_average
     end
 
     it "pipeline mode should perform better than non-pipeline mode with network latency of 10 ms" do
@@ -80,6 +85,7 @@ RSpec.describe Admin::DashboardController, type: :controller do
 
         puts "95% : In Pipeline but without load : #{benchmark_results[0].percentile(95)} ; In pipeline with load : #{benchmark_results[1].percentile(95)}, Not in pipeline #{benchmark_results[2].percentile(95)}"
         puts "In Pipeline but without load : #{index_pipeline_benchmarks_average} ; In pipeline with load : #{index_with_load_in_pipeline_benchmarks_average}, Not in pipeline #{index_non_pipeline_benchmarks_average}"
+        expect(index_with_load_in_pipeline_benchmarks_average).to be < index_non_pipeline_benchmarks_average
       end
     end
 
@@ -94,8 +100,24 @@ RSpec.describe Admin::DashboardController, type: :controller do
 
         puts "95% : In Pipeline but without load : #{benchmark_results[0].percentile(95)} ; In pipeline with load : #{benchmark_results[1].percentile(95)}, Not in pipeline #{benchmark_results[2].percentile(95)}"
         puts "In Pipeline but without load : #{index_pipeline_benchmarks_average} ; In pipeline with load : #{index_with_load_in_pipeline_benchmarks_average}, Not in pipeline #{index_non_pipeline_benchmarks_average}"
+        expect(index_with_load_in_pipeline_benchmarks_average).to be < index_non_pipeline_benchmarks_average
       end
     end
 
+    it "pipeline mode should perform better than non-pipeline mode in transaction scenarios" do
+      ActiveRecord::Base.transaction do
+        @henri = create(:user, :as_admin)
+      end
+      benchmark_results = get_benchmark_results
+      require 'descriptive_statistics'
+      index_pipeline_benchmarks_average = benchmark_results[0].sum / benchmark_results[0].size
+      index_with_load_in_pipeline_benchmarks_average = benchmark_results[1].sum / benchmark_results[1].size
+      index_non_pipeline_benchmarks_average = benchmark_results[2].sum / benchmark_results[2].size
+
+
+      puts "95% : In Pipeline but without load : #{benchmark_results[0].percentile(95)} ; In pipeline with load : #{benchmark_results[1].percentile(95)}, Not in pipeline #{benchmark_results[2].percentile(95)}"
+      puts "In Pipeline but without load : #{index_pipeline_benchmarks_average} ; In pipeline with load : #{index_with_load_in_pipeline_benchmarks_average}, Not in pipeline #{index_non_pipeline_benchmarks_average}"
+      expect(index_with_load_in_pipeline_benchmarks_average).to be < index_non_pipeline_benchmarks_average
+    end
   end
 end
