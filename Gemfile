@@ -54,7 +54,6 @@ group :development, :test do
   gem "rubocop-rails", "~> 2.15.2", require: false
   gem "rubocop-rspec", "~> 2.12.1", require: false
   gem "simplecov", "~> 0.21.2", require: false
-  gem "descriptive_statistics", require: false
 end
 
 group :development do
