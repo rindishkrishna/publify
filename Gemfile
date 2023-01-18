@@ -5,7 +5,6 @@ source "https://rubygems.org"
 gem "rails", ["~> 6.1.6", ">= 6.1.6.1"]
 gem "pg_activerecord_ext", git: "https://github.com/gautampunhani/pg_activerecord_ext.git", branch: "main"
 gem 'toxiproxy', '~> 2.0', '>= 2.0.2'
-gem 'ruby-prof', "~> 1.4"
 gem "mysql2"
 gem "pg"
 gem "sqlite3", "~> 1.4.0"
@@ -54,6 +53,7 @@ group :development, :test do
   gem "rubocop-rails", "~> 2.15.2", require: false
   gem "rubocop-rspec", "~> 2.12.1", require: false
   gem "simplecov", "~> 0.21.2", require: false
+  gem 'scout_apm'
 end
 
 group :development do
@@ -62,11 +62,6 @@ group :development do
   gem "web-console", "~> 4.1"
 
   gem "listen", "~> 3.3"
-  # Display performance information such as SQL time and flame graphs for each
-  # request in your browser.
-  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem "rack-mini-profiler", "~> 3.0"
-  gem 'rails-perftest'
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
   gem "spring", "~> 3.0.0"

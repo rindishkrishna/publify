@@ -5,7 +5,7 @@ $ rake db:setup
 $ rake db:migrate
 $ rake db:seed
 $ rake assets:precompile
-$ rails server
+$ SCOUT_DEV_TRACE=true rails server (run server with devTrace) 
 ```
 
 Toxiproxy Setup
